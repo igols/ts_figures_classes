@@ -5,21 +5,22 @@ export interface Figure {
 }
 
 export class Triangle implements Figure {
-  shape: 'triangle' = 'triangle';
-
   constructor(
     public color: 'red' | 'green' | 'blue',
     public a: number,
     public b: number,
     public c: number,
+    public shape: 'triangle' = 'triangle',
   ) {
-    if (!(a && b && c)) {
+    if (!(this.a || this.b || this.c)) {
       throw new Error('triangle is not specified');
     } else {
-      const sortArray: number[] = [a, b, c].sort((x, y) => x - y);
+      const sortArray: number[] = [this.a, this.b, this.c].sort(
+        (x, y) => x - y,
+      );
 
-      if (sortArray[0] <= sortArray[1] + sortArray[2]) {
-        throw new Error('not a valid value');
+      if (sortArray[2] >= sortArray[1] + sortArray[0]) {
+        throw new Error('not a valid parameter');
       }
     }
   }
@@ -42,10 +43,8 @@ export class Circle implements Figure {
     public color: 'red' | 'green' | 'blue',
     public radius: number,
   ) {
-    this.color = color;
-
-    if (radius <= 0) {
-      throw new Error('not a valid value');
+    if (this.radius <= 0) {
+      throw new Error('not a valid radius');
     }
   }
 
